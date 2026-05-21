@@ -100,7 +100,7 @@
 html { overflow-x: hidden; scroll-behavior: smooth; }
 body {
   overflow-x: hidden;
-  background: #ffffff;
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -153,24 +153,25 @@ button { font: inherit; cursor: pointer; }
   color: var(--color-accent);
 }
 
-/* ── Buttons ── */
+/* ── Buttons — DESIGN.md: pill shape, 38px height, 14px/400 ── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2xs);
+  gap: 6px;
   font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
   line-height: 1;
-  height: 2.75rem;
-  padding: 0 var(--space-md);
-  border: var(--rule-hair) solid transparent;
-  border-radius: var(--radius-pill);
-  transition: background var(--dur-short) var(--ease-micro),
-              border-color var(--dur-short) var(--ease-micro),
-              color var(--dur-short) var(--ease-micro);
+  height: 38px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
   white-space: nowrap;
+  text-decoration: none;
 }
 .btn:focus-visible {
   outline: 2px solid var(--color-focus);
@@ -182,38 +183,34 @@ button { font: inherit; cursor: pointer; }
   cursor: not-allowed;
   pointer-events: none;
 }
-.btn--fill {
+/* Primary — dark fill */
+.btn--primary {
   background: #1c1917;
   color: #ffffff;
-  border-color: #1c1917;
 }
-.btn--fill:hover { background: #292524; border-color: #292524; }
+.btn--primary:hover { background: #292524; }
+/* Accent — orange fill */
 .btn--accent {
-  background: var(--color-accent);
+  background: #fe551b;
   color: #ffffff;
-  border-color: var(--color-accent);
 }
-.btn--accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
-.btn--outline {
+.btn--accent:hover { background: #e54a15; }
+/* Secondary — subtle gray */
+.btn--secondary {
   background: rgba(0, 0, 0, 0.04);
-  color: var(--color-ink);
-  border-color: transparent;
+  color: #1c1917;
 }
-.btn--outline:hover { background: rgba(0, 0, 0, 0.08); }
+.btn--secondary:hover { background: rgba(0, 0, 0, 0.08); }
+/* Ghost — transparent */
 .btn--ghost {
   background: transparent;
-  color: var(--color-ink-2);
+  color: #57534d;
 }
-.btn--ghost:hover { background: var(--color-paper-3); color: var(--color-ink); }
-.btn--lg {
-  height: 3.25rem;
-  padding: 0 var(--space-lg);
-  font-size: 1.0625rem;
-  font-weight: 500;
-}
+.btn--ghost:hover { background: rgba(239, 238, 237, 0.4); color: #1c1917; }
+/* Arrow icon in buttons */
 .btn .arrow {
   font-size: 1em;
-  transition: transform var(--dur-short) var(--ease-micro);
+  transition: transform 180ms ease;
 }
 .btn:hover .arrow { transform: translateX(2px); }
 
@@ -294,54 +291,44 @@ button { font: inherit; cursor: pointer; }
   align-items: center;
   gap: 8px;
 }
-.site-nav__right .nav-btn-ghost {
+/* Nav buttons — DESIGN.md: 32px height, 14px/400, pill */
+.site-nav__right .nav-btn-ghost,
+.site-nav__right .nav-btn-secondary,
+.site-nav__right .nav-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
-  color: var(--color-ink-muted);
-  padding: 8px 15px;
-  border-radius: 99px;
-  background: transparent;
+  line-height: 1;
+  border-radius: 999px;
   border: none;
   cursor: pointer;
-  transition: color 180ms ease, background 180ms ease;
-  line-height: 1;
   text-decoration: none;
+  transition: background 180ms ease, color 180ms ease;
+}
+.site-nav__right .nav-btn-ghost {
+  padding: 0 15px;
+  color: var(--color-ink-muted);
+  background: transparent;
 }
 .site-nav__right .nav-btn-ghost:hover {
   color: var(--color-ink-2);
   background: rgba(239, 238, 237, 0.4);
 }
 .site-nav__right .nav-btn-secondary {
-  font-size: 14px;
-  font-weight: 400;
+  padding: 0 15px;
   color: var(--color-ink-muted);
-  padding: 8px 15px;
-  border-radius: 99px;
-  background: rgba(239, 238, 237, 0.7);
-  border: none;
-  cursor: pointer;
-  transition: background 180ms ease;
-  line-height: 1;
-  text-decoration: none;
+  background: var(--color-paper-3);
 }
 .site-nav__right .nav-btn-secondary:hover {
   background: rgba(239, 238, 237, 1);
 }
 .site-nav__right .nav-btn-primary {
-  font-size: 14px;
-  font-weight: 400;
-  color: #ffffff;
-  padding: 8px 20px;
-  border-radius: 99px;
-  background: #1c1917;
-  border: none;
-  cursor: pointer;
-  transition: background 180ms ease;
-  line-height: 1;
-  text-decoration: none;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
+  padding: 0 20px;
+  color: var(--color-accent-ink);
+  background: var(--color-ink);
 }
 .site-nav__right .nav-btn-primary:hover {
   background: #292524;
@@ -349,7 +336,7 @@ button { font: inherit; cursor: pointer; }
 
 /* ── Banner — Figma: #fafaf9 bg, 38px height, centered ── */
 .top-banner {
-  background: #fafaf9;
+  background: var(--color-paper-2);
   color: var(--color-ink-2);
   font-size: 14px;
   font-weight: 400;
@@ -395,8 +382,8 @@ button { font: inherit; cursor: pointer; }
   font-size: 14px;
   font-weight: 400;
   color: var(--color-ink-2);
-  background: #fafaf9;
-  border: 1px solid #efeeed;
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
   border-radius: 24px;
   padding: 5px 16px 5px 6px;
   line-height: 22.4px;
@@ -423,59 +410,14 @@ button { font: inherit; cursor: pointer; }
 
 .hero__intro .body-lg {
   max-width: 580px;
-  color: var(--color-ink-2);
-  font-size: 16px;
-  line-height: 25.6px;
 }
 
-/* Hero CTAs — Figma: 38px height, 16px font, -0.48px tracking, pill */
+/* Hero CTAs — uses unified .btn system */
 .hero__actions {
   display: flex;
   gap: 10px;
   margin-top: 8px;
 }
-.hero__actions .hero-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 14px;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.48px;
-  line-height: 16px;
-  color: #ffffff;
-  background: #1c1917;
-  border: none;
-  border-radius: 99px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 180ms ease;
-}
-.hero__actions .hero-btn-primary:hover { background: #292524; }
-.hero__actions .hero-btn-primary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-.hero__actions .hero-btn-primary .arrow { font-size: 14px; }
-.hero__actions .hero-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  height: 38px;
-  padding: 0 14px;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.48px;
-  line-height: 16px;
-  color: var(--color-ink);
-  background: rgba(0, 0, 0, 0.04);
-  border: none;
-  border-radius: 99px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 180ms ease;
-}
-.hero__actions .hero-btn-secondary:hover { background: rgba(0, 0, 0, 0.08); }
-.hero__actions .hero-btn-secondary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 
 /* ── Screenshot figure — NO fake browser chrome (gate 57) ── */
 .shot {
@@ -483,8 +425,8 @@ button { font: inherit; cursor: pointer; }
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-card);
   overflow: hidden;
-  box-shadow: 0 1px 2px oklch(0% 0 0 / 0.04),
-              0 16px 48px -16px oklch(0% 0 0 / 0.12);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+              0 16px 48px -16px rgba(0, 0, 0, 0.12);
 }
 .shot img {
   display: block;
@@ -520,7 +462,7 @@ button { font: inherit; cursor: pointer; }
   color: inherit;
 }
 .fcard:hover {
-  box-shadow: 0 2px 4px oklch(0% 0 0 / 0.04), 0 12px 32px -12px oklch(0% 0 0 / 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 12px 32px -12px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
 .fcard:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
@@ -577,7 +519,7 @@ button { font: inherit; cursor: pointer; }
   border-radius: var(--radius-input);
   padding: var(--space-sm) var(--space-md);
   display: flex; flex-direction: column; gap: var(--space-2xs);
-  box-shadow: 0 4px 12px -4px oklch(0% 0 0 / 0.06);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.06);
 }
 .art-copilot .row { display: flex; align-items: flex-start; gap: var(--space-2xs); font-size: var(--text-xs); }
 .art-copilot .av {
@@ -616,7 +558,7 @@ button { font: inherit; cursor: pointer; }
   background: var(--color-ink); color: var(--color-paper-2);
   display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--font-outlier); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.06em;
-  box-shadow: 0 8px 24px -8px oklch(0% 0 0 / 0.3);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.3);
 }
 .art-agents .node {
   position: absolute;
@@ -628,7 +570,7 @@ button { font: inherit; cursor: pointer; }
   font-size: 0.625rem;
   font-weight: 500;
   color: var(--color-ink-2);
-  box-shadow: 0 1px 3px oklch(0% 0 0 / 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   display: inline-flex; align-items: center; gap: 0.25rem;
 }
 .art-agents .node .ndot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-accent); }
@@ -740,7 +682,7 @@ button { font: inherit; cursor: pointer; }
 /* Placeholder */
 .placeholder {
   position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(45deg, transparent 0, transparent 14px, oklch(0% 0 0 / 0.025) 14px, oklch(0% 0 0 / 0.025) 15px);
+  background-image: repeating-linear-gradient(45deg, transparent 0, transparent 14px, rgba(0, 0, 0, 0.025) 14px, rgba(0, 0, 0, 0.025) 15px);
 }
 .placeholder__label {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -756,10 +698,10 @@ button { font: inherit; cursor: pointer; }
 .quote-section { padding: var(--space-3xl) 0; text-align: center; }
 .quote-section blockquote {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
   color: var(--color-ink);
   max-width: 48ch;
   margin: 0 auto;
@@ -831,9 +773,9 @@ button { font: inherit; cursor: pointer; }
 .stat-strip .stat { display: flex; flex-direction: column; gap: var(--space-3xs); }
 .stat-strip .stat__n {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-size: var(--text-2xl);
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: var(--color-ink);
   font-feature-settings: "tnum";
   line-height: 1.05;
@@ -876,9 +818,9 @@ button { font: inherit; cursor: pointer; }
 }
 .foot-stmt__line {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: var(--text-2xl);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.025em;
   color: var(--color-ink);
   max-width: 24ch;
@@ -999,8 +941,8 @@ button { font: inherit; cursor: pointer; }
       <h1 class="display display--xl">The command center for industrial&nbsp;operations.</h1>
       <p class="body-lg">Optrix is the AI layer over your ERP, QMS, and shop-floor data. 20-minute queries become 20-second answers.</p>
       <div class="hero__actions">
-        <a href="#" class="hero-btn-primary">Start for free <span class="arrow" aria-hidden="true">→</span></a>
-        <a href="#" class="hero-btn-secondary">Talk to us</a>
+        <a href="#" class="btn btn--primary">Start for free <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="#" class="btn btn--secondary">Talk to us</a>
       </div>
     </div>
 
@@ -1175,7 +1117,7 @@ button { font: inherit; cursor: pointer; }
       <strong>Nick Anderson</strong> &middot; President, Belden Universal
     </div>
     <div class="actions">
-      <a href="#" class="btn btn--outline">Read the Belden pilot</a>
+      <a href="#" class="btn btn--secondary">Read the Belden pilot</a>
       <a href="#" class="btn btn--ghost">Become a pilot partner</a>
     </div>
   </div>
@@ -1248,8 +1190,8 @@ button { font: inherit; cursor: pointer; }
     <h2 class="display display--xl">Make your shop floor data a joy to&nbsp;use.</h2>
     <p class="body-md">Rolling out with a small group of pilot manufacturers. One week to onboard.</p>
     <div class="cta-row">
-      <a href="#" class="btn btn--accent btn--lg">Request a pilot <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      <a href="#" class="btn btn--outline btn--lg">Talk to us</a>
+      <a href="#" class="btn btn--accent">Request a pilot <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a href="#" class="btn btn--secondary">Talk to us</a>
     </div>
   </div>
 </section>
